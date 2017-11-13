@@ -1,0 +1,6 @@
+build*
+.root_hist
+*.bin
+*.root
+rootfiles
+ana

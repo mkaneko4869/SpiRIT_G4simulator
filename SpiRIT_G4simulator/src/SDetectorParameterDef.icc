@@ -1,0 +1,69 @@
+fExpHall_x = 100.*m;
+fExpHall_y = 50.*m;
+fExpHall_z = 100.*m;
+
+fSmYoke_x = 6.6*m;
+fSmYoke_y = 4.68*m;
+fSmYoke_z = 3.0*m;
+
+fSmYokeIn_x = 3.4*m;
+fSmYokeIn_y = 0.88*m;
+fSmYokeIn_z = 2.08*m;
+fSmYokeInTrd_x = 5.2*m;        // X size of exit part of vacuum chamber.  
+fSmYokeInTrd_z = (0.9+0.25)*m; // yoke + cramp width 
+
+fSmSideHole_x = 7.0*m;
+fSmSideHole_y = 0.4*m;
+fSmSideHole_z = 0.4*m;
+  
+fCramp_x = 5.2*m;
+fCramp_y = 0.7*m;
+fCramp_z = 0.25*m;
+
+
+fVC_thickness = 4.0*cm;
+fVC_x = fSmYokeIn_x;
+fVC_y = fSmYokeIn_y;
+fVC_z = fSmYokeIn_z;
+fVCTrd_x = fSmYokeInTrd_x;
+fVCTrd_z = fSmYokeInTrd_z;
+fVCIn_x = fVC_x - fVC_thickness*2.;
+fVCIn_y = fVC_y - fVC_thickness*2.;
+
+fTPCEnc_x = 1470*mm;
+fTPCEnc_y = 560*mm;
+fTPCEnc_z = 2009.8*mm;
+fTPCEnc_thickness = 12.7*mm; // half inch
+
+fTarget_x = 30.*mm;
+fTarget_y = 40.*mm;
+fTarget_z = 1.0*mm;
+// posotion in global coordinate
+fTargetPos_x = 0.*mm; 
+fTargetPos_y = 0.*mm;
+fTargetPos_z = -553.063*mm - 8.9*mm - fTarget_z/2.;
+
+fFC_x = 1000.*mm;
+fFC_y = 530.*mm;
+fFC_z = 1490.*mm;
+fFC_thickness = 1.59*mm;
+
+fPad_x = 8.*mm;
+fPad_z = 12.*mm;
+fNPad_x = 108;
+fNPad_z = 112;
+fPadPlane_x = 8.*108.*mm;
+fPadPlane_z = 12.*112.*mm;
+fArGas_y = 500.*mm;
+
+fNKyoto = 60;
+fKyoto_length = 45.*cm;
+fKyoto_width  = 5.0*cm;
+fKyoto_thick  = 1.0*cm;
+
+fNKatanaV = 3;
+fNKatanaM = 12;
+fKatana_length = 38.*cm;
+fKatana_width  = 10.*cm;
+fKatanaV_thick = 1.0*mm;
+fKatanaM_thick = 1.0*cm;

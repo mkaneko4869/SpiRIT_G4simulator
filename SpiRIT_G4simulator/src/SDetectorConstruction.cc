@@ -647,8 +647,8 @@ void SDetectorConstruction::ConstructKATANA(){
   G4double katana_ypos = 226.*mm-40.*mm-fKatana_length/2.;  // relative to vchamber coodinate (y=0: beamline)
   G4double katana_zpos = -offset_z0_fcfor+1867.*mm+fKatanaV_thick/2.; // relative to z=0
   G4double katanaveto_xoverlap = 12.*mm;
-  G4double katanavetoright_xpos = katanavetocenter_xpos-fKatanaV_width+katanaveto_xoverlap;
-  G4double katanavetoleft_xpos = katanavetocenter_xpos+fKatanaV_width-katanaveto_xoverlap;
+  G4double katanavetoright_xpos = katanavetocenter_xpos-fKatana_width+katanaveto_xoverlap;
+  G4double katanavetoleft_xpos = katanavetocenter_xpos+fKatana_width-katanaveto_xoverlap;
 
   int ikatana_plastic =0;
   //center veto

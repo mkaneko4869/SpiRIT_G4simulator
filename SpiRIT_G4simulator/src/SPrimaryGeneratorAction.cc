@@ -88,6 +88,7 @@ void SPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     G4AutoLock lock(&SPrimGenMutex);
     fHICEvt->GeneratePrimaryVertex(anEvent);
     
+    fHistoManager->SetIsInputFileOK(fHICEvt->GetIsFileOK()); 
     fHistoManager->SetImp(fHICEvt->GetImp());
     fHistoManager->SetPhiRP(fHICEvt->GetPhiRP());
     fHistoManager->SetVertexPos(fHICEvt->GetVertexPos());

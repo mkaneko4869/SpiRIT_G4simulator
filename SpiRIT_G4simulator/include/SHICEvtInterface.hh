@@ -24,6 +24,9 @@ class SHICEvtInterface : public G4VPrimaryGenerator
   G4double GetPhiRP(){ return fPhi; }
   void SetVertexPos(G4ThreeVector xyz){ fVertexPos = xyz; }
   G4ThreeVector GetVertexPos(){ return fVertexPos; }
+  
+  void SetIsFileOK(G4bool v){ isFileOK = v; }
+  G4bool GetIsFileOK(){ return isFileOK; }
 
 
   private:
@@ -34,6 +37,7 @@ class SHICEvtInterface : public G4VPrimaryGenerator
   G4double fImp;
   G4double fPhi;
   G4ThreeVector fVertexPos;
+  G4bool isFileOK;
 };
 
 #endif

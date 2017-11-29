@@ -46,6 +46,9 @@ class SHistoManager
   void SetVMaxZ(G4int az){ vetoMaxZ = az; }
   void SetVMaxdE(G4double de){ vetoMaxdE = de; }
   void SetNKatanaM(G4int nk){ katanaM = nk; }
+  
+  void SetIsInputFileOK(bool v){ isInputFileOK = v; }
+  G4bool GetIsInputFileOK(){ return isInputFileOK; };
    
   private:
   TFile* fout;
@@ -68,6 +71,8 @@ class SHistoManager
   TClonesArray* track;      // information of track passed through TPC sensitive area.
   TClonesArray* kyotoHit;   // kyoto Hit information
   TClonesArray* katanaVHit; // katana veto Hit information
+  
+  G4bool isInputFileOK;
 
 };
 #endif

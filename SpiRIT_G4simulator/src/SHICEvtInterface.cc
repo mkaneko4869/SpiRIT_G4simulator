@@ -23,6 +23,7 @@ SHICEvtInterface::SHICEvtInterface(std::string evfile)
   inputFile.open(evfile.c_str(),std::ios::in);
   if(inputFile.is_open()){
     fileName = evfile;
+    SetIsFileOK(true);
     if( fileName.find(".f14.clu") != std::string::npos ){
       std::cout<<"SHICEvtInterface - "<<fileName<<" is open."<<std::endl;
       gentype = 1;
@@ -35,6 +36,7 @@ SHICEvtInterface::SHICEvtInterface(std::string evfile)
     }else{
       std::cout<<"SHICEvtInterface - Error!!"<<std::endl;
       std::cout<<"Unknown input data file!!"<<std::endl;
+      SetIsFileOK(false);
     }
 
     LoadHeader();
@@ -42,6 +44,7 @@ SHICEvtInterface::SHICEvtInterface(std::string evfile)
   }else{
     std::cout<<"SHICEvtInterface - Error!!"<<std::endl;
     std::cout<<"File is not readable!!"<<std::endl;
+    SetIsFileOK(false);
   }
   
   G4ThreeVector zero;
@@ -95,12 +98,16 @@ void SHICEvtInterface::GeneratePrimaryVertex(G4Event* evt)
    std::string event_info;
    if(inputFile.is_open())
      std::getline(inputFile,event_info);
-   else 
+   else
+   {
      G4Exception("SHICEvtInterface::GeneratePrimaryVertex","Code",FatalException,"SHICEvtInterface:: cannot open file.");
+     SetIsFileOK(false);
+   }
 
    if(inputFile.eof()){ // End Of File
      G4Exception("SHICEvtInterface::GeneratePrimaryVertex","Code",JustWarning,"End-Of-File: SHICEvt input file");
      inputFile.close();
+     SetIsFileOK(false);
      return;
    }
   

@@ -95,8 +95,8 @@ void SEventAction::EndOfEventAction(const G4Event* evt)
   }
 
 
-
-  fHistoManager->Fill();
+  if(fHistoManager->GetIsInputFileOK())
+    fHistoManager->Fill();
   if(evt->GetEventID()%5000==0)
     fHistoManager->AutoSave();
   fHistoManager->InitParameter();

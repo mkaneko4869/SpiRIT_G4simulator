@@ -42,6 +42,7 @@ SPrimaryGeneratorAction::SPrimaryGeneratorAction(SHistoManager* histo)
    else if(inname.find("amd") != std::string::npos) inname.erase(inname.find(".dat"));
    fHistoManager->SetOutputName(inname);   
 
+   // in case you want to inject a beam, fUseHICEvt should be false.
    G4int n_particle = 1;
    auto particleGun = new G4ParticleGun(n_particle);
    auto ionTable = G4IonTable::GetIonTable();
@@ -60,7 +61,6 @@ SPrimaryGeneratorAction::SPrimaryGeneratorAction(SHistoManager* histo)
 
    particleGun->SetParticlePosition(beampos);
    fParticleGun = particleGun;
-
 
 }
 

@@ -606,7 +606,6 @@ void SDetectorConstruction::ConstructTarget(){
 void SDetectorConstruction::ConstructKyotoArray(){
   // Kyotoarray
 
-  G4ThreeVector KyotoPla_Size(10.*mm, 450.*mm, 50.*mm);
   G4Box* KyotoPla_Box = new G4Box("KyotoPla_Box",
                                     fKyoto_thick/2.,fKyoto_length/2.,fKyoto_width/2.);
   fKyotoPla_Log = new G4LogicalVolume(KyotoPla_Box,fKyotoPlaMaterial,"KyotoPla_Log");
@@ -635,7 +634,6 @@ void SDetectorConstruction::ConstructKyotoArray(){
 
 void SDetectorConstruction::ConstructKATANA(){
   // KATANAveto
-  G4ThreeVector KatanaVeto_Size(100.*mm, 380.*mm, 1.*mm);
   G4Box* KatanaVeto_Box = new G4Box("KatanaVeto_Box",
                                      fKatana_width/2.,
                                      fKatana_length/2.,
@@ -643,21 +641,26 @@ void SDetectorConstruction::ConstructKATANA(){
   fKatanaVeto_Log = new G4LogicalVolume(KatanaVeto_Box,fPlasticMaterial,"KatanaVeto_Log");
 
   G4double offset_z0_fcfor = 553.063*mm;
-  G4double katana_xpos = -(355.-75.)/2*mm;
+  
+  //G4double katanavetocenter_xpos = -246.*mm; // for 108Sn beam exp.
+  G4double katanavetocenter_xpos = -215.*mm; // for 132Sn beam exp.
   G4double katana_ypos = 226.*mm-40.*mm-fKatana_length/2.;  // relative to vchamber coodinate (y=0: beamline)
   G4double katana_zpos = -offset_z0_fcfor+1867.*mm+fKatanaV_thick/2.; // relative to z=0
+  G4double katanaveto_xoverlap = 12.*mm;
+  G4double katanavetoright_xpos = katanavetocenter_xpos-fKatanaV_width+katanaveto_xoverlap;
+  G4double katanavetoleft_xpos = katanavetocenter_xpos+fKatanaV_width-katanaveto_xoverlap;
 
   int ikatana_plastic =0;
   //center veto
-  new G4PVPlacement(0,G4ThreeVector( katana_xpos, katana_ypos, katana_zpos),
+  new G4PVPlacement(0,G4ThreeVector( katanavetocenter_xpos, katana_ypos, katana_zpos),
                     fKatanaVeto_Log,"KatanaVeto_Phys",
                     fVCInside_Log,false,ikatana_plastic++);
   // beam right
-  new G4PVPlacement(0,G4ThreeVector( katana_xpos-100.*mm+10.*mm, katana_ypos, katana_zpos-10.*mm),
+  new G4PVPlacement(0,G4ThreeVector( katanavetoright_xpos, katana_ypos, katana_zpos-10.*mm),
                     fKatanaVeto_Log,"KatanaVeto_Phys",
                     fVCInside_Log,false,ikatana_plastic++);
   // beam left
-  new G4PVPlacement(0,G4ThreeVector( katana_xpos+100.*mm-10.*mm, katana_ypos, katana_zpos-10.*mm),
+  new G4PVPlacement(0,G4ThreeVector( katanavetoleft_xpos, katana_ypos, katana_zpos-10.*mm),
                     fKatanaVeto_Log,"KatanaVeto_Phys",
                     fVCInside_Log,false,ikatana_plastic++);
 
@@ -667,16 +670,15 @@ void SDetectorConstruction::ConstructKATANA(){
   fKatanaVeto_Log->SetVisAttributes(KatanaVeto_VisAtt);
 
   // KATANA Multiplicity
-  G4double katanaM_z = 10.*mm;
   G4Box* KatanaM_Box = new G4Box("KatanaM_box",
                                   fKatana_width/2.,
                                   fKatana_length/2.,
                                   fKatanaM_thick/2.);
   fKatanaM_Log = new G4LogicalVolume(KatanaM_Box,fPlasticMaterial,"KatanaM_Log");
 
-  G4double katanaM_xpos = katana_xpos-10.*mm-100.1*7.*mm;
+  G4double katanaM_xpos = katanavetocenter_xpos-10.*mm-100.1*7.*mm; // M1 position
   G4double katanaM_ypos = katana_ypos;  // relative to vchamber coodinate (y=0: beamline)
-  G4double katanaM_zpos = -offset_z0_fcfor+1867.*mm+katanaM_z/2.; // relative to z=0
+  G4double katanaM_zpos = -offset_z0_fcfor+1867.*mm+fKatanaM_thick/2.; // relative to z=0
 
   int ikatanaM_plastic =0;
   for(int i=0; i<7; i++){
@@ -685,7 +687,7 @@ void SDetectorConstruction::ConstructKATANA(){
         fVCInside_Log,false,ikatanaM_plastic++);    // M1, M2, ... M7
   }
   for(int i=0; i<5; i++){
-    new G4PVPlacement(0,G4ThreeVector( katana_xpos+110.1*mm+(i*100.1)*mm, katanaM_ypos, katanaM_zpos),
+    new G4PVPlacement(0,G4ThreeVector( katanavetocenter_xpos+110.1*mm+(i*100.1)*mm, katanaM_ypos, katanaM_zpos),
         fKatanaM_Log,"KatanaM_Phys",
         fVCInside_Log,false,ikatanaM_plastic++);    // M8~M12
   }
@@ -693,5 +695,5 @@ void SDetectorConstruction::ConstructKATANA(){
   G4VisAttributes* KatanaM_VisAtt = new G4VisAttributes(G4Colour(0.,1.,0.,0.4));
   KatanaM_VisAtt->SetForceSolid(true);
   fKatanaM_Log->SetVisAttributes(KatanaM_VisAtt);
-}
 
+}

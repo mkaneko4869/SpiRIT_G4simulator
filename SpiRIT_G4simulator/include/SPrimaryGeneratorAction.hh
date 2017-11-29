@@ -31,13 +31,7 @@ class SPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 
       SHistoManager* fHistoManager;
 
-      bool fbeam;
-      bool furqmd;
-      bool fphits;
-      bool famd;
-
 #include "SDetectorParameterDef.hh"
-
 
 };
 

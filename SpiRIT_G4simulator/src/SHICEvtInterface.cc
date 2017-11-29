@@ -23,7 +23,7 @@ SHICEvtInterface::SHICEvtInterface(std::string evfile)
   inputFile.open(evfile.c_str(),std::ios::in);
   if(inputFile.is_open()){
     fileName = evfile;
-    if( fileName.find("urqmd") != std::string::npos ){
+    if( fileName.find(".f14.clu") != std::string::npos ){
       std::cout<<"SHICEvtInterface - "<<fileName<<" is open."<<std::endl;
       gentype = 1;
     }else if( fileName.find("phits") != std::string::npos ){

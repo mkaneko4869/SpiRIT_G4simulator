@@ -34,15 +34,10 @@ export G4SAIDXSDATA=$G4INST/share/Geant4-10.1.3/data/G4SAIDDATA1.1
 
 
 URQMDDIR=$MYDIR/simulation/urqmd
-#export URQMD_INP=$URQMDDIR/132sn124sn270amevb0012_1.f14.clu
-export URQMD_INP=$URQMDDIR/108sn112sn270amevb0012_1.f14.clu
-
 PHITSDIR=$MYDIR/simulation/phits
-export PHITS_INP=$PHITSDIR/132Sn124Sn_170830/phits_132Sn124Sn_1.dat
-
 AMDDIR=$MYDIR/simulation/amd
-export AMD_INP=$AMDDIR/Sn132Sn124_270amev_amd_cluster_SLy4.dat
 
+export INPFILE=$URQMDDIR/108sn112sn270amevb0012_3.f14.clu
 
 
 #export URQMD_INP=$URQMDDIR/132sn_124sn_300amev_b00-12.f14.clu

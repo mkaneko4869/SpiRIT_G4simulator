@@ -26,25 +26,20 @@ SPrimaryGeneratorAction::SPrimaryGeneratorAction(SHistoManager* histo)
 
    G4cout << "Constructor of SPrimaryGeneratorAction" << G4endl;
 
-   // use collision data or not?
-   fbeam = false;
-   furqmd = true;
-   fphits = false;
-   famd = false;
    // read input file and its header part. 
-   char* datapath;
-   if(furqmd) datapath = std::getenv("URQMD_INP");
-   else if(fphits) datapath = std::getenv("PHITS_INP");
-   else if(famd) datapath = std::getenv("AMD_INP");
+   char* datapath = std::getenv("INPFILE");
    
    fHICEvt = new SHICEvtInterface(datapath);
    fUseHICEvt = true; 
    
    std::string inname = std::string(datapath);
    inname.erase(0,inname.find_last_of('/')+1);  // remove path name -> only file name
-   if(furqmd) inname.erase(inname.find(".f14.clu"));
-   else if(fphits) inname.erase(inname.find(".dat"));
-   else if(famd) inname.erase(inname.find(".dat"));
+   if(inname.find(".f14.clu") != std::string::npos){
+     inname.erase(inname.find(".f14.clu"));
+     inname.insert(0,"urqmd_");
+   }
+   else if(inname.find("phits") != std::string::npos) inname.erase(inname.find(".dat"));
+   else if(inname.find("amd") != std::string::npos) inname.erase(inname.find(".dat"));
    fHistoManager->SetOutputName(inname);   
 
    G4int n_particle = 1;

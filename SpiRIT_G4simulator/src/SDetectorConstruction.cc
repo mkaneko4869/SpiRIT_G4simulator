@@ -642,8 +642,8 @@ void SDetectorConstruction::ConstructKATANA(){
 
   G4double offset_z0_fcfor = 553.063*mm;
   
-  G4double katanavetocenter_xpos = -246.*mm; // for 108Sn beam exp.
-  //G4double katanavetocenter_xpos = -215.*mm; // for 132Sn beam exp.
+  //G4double katanavetocenter_xpos = -246.*mm; // for 108Sn beam exp.
+  G4double katanavetocenter_xpos = -215.*mm; // for 132Sn beam exp.
   G4double katana_ypos = 226.*mm-40.*mm-fKatana_length/2.;  // relative to vchamber coodinate (y=0: beamline)
   G4double katana_zpos = -offset_z0_fcfor+1867.*mm+fKatanaV_thick/2.; // relative to z=0
   G4double katanaveto_xoverlap = 12.*mm;

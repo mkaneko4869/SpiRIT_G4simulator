@@ -38,7 +38,7 @@ SPrimaryGeneratorAction::SPrimaryGeneratorAction(SHistoManager* histo)
      inname.erase(inname.find(".f14.clu"));
      inname.insert(0,"urqmd_");
    }
-   else if(inname.find("phits") != std::string::npos) inname.erase(inname.find(".dat"));
+   else if(inname.find("phits") != std::string::npos) inname.erase(inname.find(".root"));
    else if(inname.find("amd") != std::string::npos) inname.erase(inname.find(".dat"));
    fHistoManager->SetOutputName(inname);   
 

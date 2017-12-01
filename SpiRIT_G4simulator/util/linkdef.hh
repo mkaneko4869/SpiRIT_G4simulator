@@ -7,6 +7,6 @@
 #pragma link C++ class STSimParticle+;
 #pragma link C++ class STSimTracking+;
 #pragma link C++ class STSimScintillator+;
-
+#pragma link C++ class PhitsParticle+;
 
 #endif

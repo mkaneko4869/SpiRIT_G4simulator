@@ -14,10 +14,11 @@
 #include <iostream>
 #include <vector>
 
+#include "PhitsParticle.hh"
 
 SHICEvtInterface::SHICEvtInterface(std::string evfile)
   : fileName(evfile), inputFile(0), gentype(0), fImp(-1.), fPhi(-999.), fVertexPosition(0),
-  phitsFile(0), phitsTree(0), phitsParticleArray(0), phitsEventID(0)
+  phitsFile(0), phitsTree(0), phitsEventID(0)
 {
 #include "SDetectorParameterDef.icc"
   if( fileName.find(".f14.clu") != std::string::npos ){
@@ -45,6 +46,7 @@ SHICEvtInterface::SHICEvtInterface(std::string evfile)
     if(gentype==1||gentype==3) LoadHeader();
     if(gentype==2){
       phitsTree = (TTree*)phitsFile->Get("tree");
+      phitsParticleArray = NULL; 
       phitsTree -> SetBranchAddress("b",&fImp);
       phitsTree -> SetBranchAddress("fparts",&phitsParticleArray);
       phitsTotalEvent = phitsTree -> GetEntries();
@@ -213,6 +215,8 @@ G4bool SHICEvtInterface::ReadPhitsEvent(G4PrimaryVertex* pv)
     return false;
   }
 
+  std::cout<<"SHICEvtInterface::ReadPhitsEvent() is called !!"<<std::endl;
+
   G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
   G4IonTable* ionTable = G4IonTable::GetIonTable();
   G4ParticleDefinition* particle = NULL;
@@ -221,7 +225,8 @@ G4bool SHICEvtInterface::ReadPhitsEvent(G4PrimaryVertex* pv)
 
   phitsTree->GetEntry(phitsEventID++);
   for(int ipart=0; ipart<phitsParticleArray->GetEntries(); ipart++){
-    auto ppart = (PhitsParticle*)phitsParticleArray->At(ipart);
+     auto ppart = (PhitsParticle*)phitsParticleArray->At(ipart);
+     std::cout<<ppart->kf<<" "<<ppart->q<<" "<<ppart->A<<std::endl;
 
     if(particleTable->FindParticle(ppart->kf))
       particle = particleTable->FindParticle(ppart->kf);
@@ -239,7 +244,7 @@ G4bool SHICEvtInterface::ReadPhitsEvent(G4PrimaryVertex* pv)
     P.rotateZ(fPhi);
     P.rotateY(-0.06); // beam is rotated about 0.06 radian toward beam right side 
     // by the magnet at the moment of hitting the target.
-    
+     
     auto part = new G4PrimaryParticle(particle,P.x(),P.y(),P.z(),E);
     partlist.push_back(part);
   }

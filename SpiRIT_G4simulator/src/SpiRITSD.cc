@@ -34,6 +34,10 @@ G4bool SpiRITSD::ProcessHits(G4Step* aStep, G4TouchableHistory*)
   newHit->SetPos( aStep->GetPreStepPoint()->GetPosition() );
   newHit->SetTrackInformation( aStep->GetTrack() );
   newHit->SetTrackID( aStep->GetTrack()->GetTrackID() );
+  newHit->SetParentID( aStep->GetTrack()->GetParentID() );
+  newHit->SetMomentum( aStep->GetTrack()->GetMomentum() );
+  newHit->SetTime( aStep->GetPreStepPoint()->GetGlobalTime() );
+  newHit->SetTotalEnergy( aStep->GetPreStepPoint()->GetTotalEnergy() );
   fTrackerCollection->insert( newHit );
 
   return true;

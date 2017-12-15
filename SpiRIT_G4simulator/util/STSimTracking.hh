@@ -12,26 +12,28 @@ class STSimTracking : public TObject
   STSimTracking();
   virtual ~STSimTracking();
   
-  virtual void Clear(Option_t* option="");
-  
-  void SetPrimaryTrack(STSimParticle apart){ part = apart; }
-  STSimParticle* GetPrimaryTrack(){ return &part; }
-  void SetEdep(Double_t edep){ dE = edep; }
-  Double_t GetEdep(){ return dE; }
-  void SetTrackLength(Double_t tl){ tLength = tl; }
-  Double_t GetTrackLength(){ return tLength; }
   void AddStep(Double_t edep,Double_t tl)
   {
-    dE+=edep;
-    tLength+=tl;
+    dE+=edep; tLength+=tl;
   }
-    
-  ClassDef(STSimTracking,1);
+
+  virtual void Clear(Option_t* option="");
   
   private:
   STSimParticle part;
   Double_t dE;
   Double_t tLength;
+  
+
+  public:
+  void SetTrack(STSimParticle apart){ part = apart; }
+  void SetEdep(Double_t edep){ dE = edep; }
+  void SetTrackLength(Double_t tl){ tLength = tl; }
+  STSimParticle* GetTrack(){ return &part; }
+  Double_t GetEdep(){ return dE; }
+  Double_t GetTrackLength(){ return tLength; }
+    
+  ClassDef(STSimTracking,1);
   
 };
 

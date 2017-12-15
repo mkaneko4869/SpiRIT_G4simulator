@@ -20,28 +20,43 @@ class TrackerHit : public G4VHit
 
     virtual void Print();
 
-    inline void SetEdep(G4double edep){ fEdep = edep; }
-    inline G4double GetEdep() const { return fEdep;}
-    inline void SetStepLength(G4double slen){ fStepLength = slen; }
-    inline G4double GetStepLength() const { return fStepLength;}
-    inline void SetPos(G4ThreeVector xyz){ fPos = xyz; }
-    inline G4ThreeVector Getpos(){ return fPos; }
+  private:
+    G4int fTrackID;
+    G4int fParentID;
+    G4double fEdep;
+    G4double fTime;
+    G4double fEtot;
+    G4ThreeVector fMom;
+    G4ThreeVector fPos;
+    G4double fStepLength;
+    STrackInformation fTrackInfo;
+  
+  public:
     inline void SetTrackID(G4int id){ fTrackID = id;}
-    inline G4int GetTrackID() const { return fTrackID; }
+    inline void SetParentID(G4int id){ fParentID = id;}
+    inline void SetEdep(G4double edep){ fEdep = edep; }
+    inline void SetTime(G4double time){ fTime = time; }
+    inline void SetTotalEnergy(G4double etot){ fEtot = etot; }
+    inline void SetMomentum(G4ThreeVector mom){ fMom = mom; }
+    inline void SetStepLength(G4double slen){ fStepLength = slen; }
+    inline void SetPos(G4ThreeVector xyz){ fPos = xyz; }
     inline void SetTrackInformation(const G4Track* aTrack)
     {
       STrackInformation* info = (STrackInformation*)(aTrack->GetUserInformation());
       info->SetCurrentTrackInformation(aTrack);
       fTrackInfo = *info;
     }
+    
+    inline G4double GetEdep() const { return fEdep;}
+    inline G4double GetStepLength() const { return fStepLength;}
+    inline G4double GetTime() const { return fTime;}
+    inline G4double GetTotalEnergy() const { return fEtot;}
+    inline G4ThreeVector GetPos(){ return fPos; }
+    inline G4ThreeVector GetMomentum(){ return fMom; }
+    inline G4int GetTrackID() const { return fTrackID; }
+    inline G4int GetParentID() const { return fParentID; }
     inline STrackInformation* GetTrackInformation()
     { return &fTrackInfo; }
-  private:
-    G4int fTrackID;
-    G4double fEdep;
-    G4ThreeVector fPos;
-    G4double fStepLength;
-    STrackInformation fTrackInfo;
 
 };
 

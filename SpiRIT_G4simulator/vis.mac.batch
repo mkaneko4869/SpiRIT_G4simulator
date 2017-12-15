@@ -3,4 +3,4 @@
 #
 # Sets some default verbose
 #
-/run/beamOn 50000
+/run/beamOn 200000

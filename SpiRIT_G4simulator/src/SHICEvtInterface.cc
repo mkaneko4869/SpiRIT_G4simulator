@@ -215,7 +215,7 @@ G4bool SHICEvtInterface::ReadPhitsEvent(G4PrimaryVertex* pv)
     return false;
   }
 
-  std::cout<<"SHICEvtInterface::ReadPhitsEvent() is called !!"<<std::endl;
+  std::cout<<"==== SHICEvtInterface::ReadPhitsEvent() is called !! ===="<<std::endl;
 
   G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
   G4IonTable* ionTable = G4IonTable::GetIonTable();
@@ -226,7 +226,6 @@ G4bool SHICEvtInterface::ReadPhitsEvent(G4PrimaryVertex* pv)
   phitsTree->GetEntry(phitsEventID++);
   for(int ipart=0; ipart<phitsParticleArray->GetEntries(); ipart++){
      auto ppart = (PhitsParticle*)phitsParticleArray->At(ipart);
-     std::cout<<ppart->kf<<" "<<ppart->q<<" "<<ppart->A<<std::endl;
 
     if(particleTable->FindParticle(ppart->kf))
       particle = particleTable->FindParticle(ppart->kf);
@@ -254,7 +253,7 @@ G4bool SHICEvtInterface::ReadPhitsEvent(G4PrimaryVertex* pv)
 
   for(size_t ipart=0; ipart<partlist.size(); ipart++){
     pv->SetPrimary(partlist.at(ipart));
-      partlist.at(ipart)->Print();
+//      partlist.at(ipart)->Print();
   }
 
   partlist.clear();

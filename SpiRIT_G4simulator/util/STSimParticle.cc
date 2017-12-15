@@ -11,6 +11,5 @@ STSimParticle::~STSimParticle(){
 
 void STSimParticle::Clear(Option_t*)
 {
-  pdg=-1; Z=-9999; A=-9999; tvec=TLorentzVector(0,0,0,0); IsPrimary=kFALSE;
-
+ trackID=-1; parentID=-1; pdg=-1; Z=-9999; A=-9999; tvec=TLorentzVector(0,0,0,0); IsPrimary=kFALSE;
 }

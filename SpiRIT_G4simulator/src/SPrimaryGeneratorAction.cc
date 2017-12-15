@@ -82,7 +82,7 @@ SPrimaryGeneratorAction::~SPrimaryGeneratorAction()
 void SPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
   
-  G4cout << "==== GeneratePrimaries called !! ====" << G4endl;
+  G4cout << "==== SPrimaryGeneratorAction::GeneratePrimaries() is called !! ====" << G4endl;
   
   if(fUseHICEvt){
     G4AutoLock lock(&SPrimGenMutex);
@@ -97,8 +97,4 @@ void SPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     fParticleGun->GeneratePrimaryVertex(anEvent);
   }
   
-
-
-
-   G4cout << "GeneratePrimaries ends" << G4endl;
 }

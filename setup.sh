@@ -37,9 +37,10 @@ URQMDDIR=$MYDIR/simulation/urqmd
 PHITSDIR=$MYDIR/simulation/phits
 AMDDIR=$MYDIR/simulation/amd
 
-#export INPFILE=$URQMDDIR/108sn112sn270amevb0012_0.f14.clu
-#export INPFILE=$URQMDDIR/132sn124sn270amevb0012_0.f14.clu
-export INPFILE=$PHITSDIR/132Sn124Sn_20171130/phits_132sn124sn281amev_0.root
+#export INPFILE=$URQMDDIR/108sn112sn270amevb0012_6.f14.clu
+#export INPFILE=$URQMDDIR/132sn124sn270amevb0012_5.f14.clu
+export INPFILE=$PHITSDIR/132Sn124Sn_20171130/phits_132sn124sn281amev_6.root
+#export INPFILE=$PHITSDIR/108Sn112Sn_20171130/phits_108sn112sn281amev_4.root
 
 
 #export URQMD_INP=$URQMDDIR/132sn_124sn_300amev_b00-12.f14.clu
